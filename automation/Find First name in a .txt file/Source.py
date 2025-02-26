@@ -10,7 +10,15 @@ try:
     with open(file_path, 'r', encoding='utf-8') as file:
         first_name = input("Enter the first name to count: ").strip()
         lines = file.readlines()
-        count = sum(1 for line in lines if line.split(',')[0].split()[0] == first_name)
-    print(f"The first name '{first_name}' appears {count} times in the file.")
+        
+        count = 0
+        print("\nMatching lines:")
+        for i, line in enumerate(lines, start=1):
+            if line.split(',')[0].split()[0] == first_name:
+                print(f"line {i}. {line.strip()}")
+                count += 1
+
+    print(f"\nThe first name '{first_name}' appears {count} times in the file.")
+
 except FileNotFoundError:
     print(f"Error: File not found at '{file_path}'.")
